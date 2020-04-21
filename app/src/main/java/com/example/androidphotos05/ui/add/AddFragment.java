@@ -1,4 +1,4 @@
-package com.example.androidphotos05.ui.dashboard;
+package com.example.androidphotos05.ui.add;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.androidphotos05.R;
 
-public class DashboardFragment extends Fragment {
+public class AddFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private AddViewModel addViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        addViewModel =
+                ViewModelProviders.of(this).get(AddViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_add, container, false);
+        final TextView textView = root.findViewById(R.id.text_add);
+        addViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
