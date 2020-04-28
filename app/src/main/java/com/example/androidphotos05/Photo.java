@@ -27,7 +27,7 @@ public class Photo implements Serializable {
     }
 
     public void addPerson(String name){
-        if(people.contains(name)) this.people.add(name);
+        if(!people.contains(name)) this.people.add(name);
     }
 
     /*

@@ -23,7 +23,7 @@
 
     <ImageView
         android:id="@+id/selected_photo"
-        android:layout_width="300dp"
+        android:layout_width="310dp"
         android:layout_height="300dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -33,13 +33,14 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.264"
+        app:layout_constraintVertical_bias="0.355"
         tools:src="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/add_photo"
         android:layout_width="52dp"
         android:layout_height="39dp"
+        android:onClick="addTag"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,11 +64,13 @@
             app:layout_constraintGuide_end="20dp" />
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="139dp"
-        android:layout_height="37dp"
+        android:id="@+id/tagText"
+        android:layout_width="145dp"
+        android:layout_height="40dp"
+        android:background="@android:drawable/editbox_background"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.742"
@@ -76,7 +79,7 @@
         app:layout_constraintVertical_bias="0.001" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/tagSpinner"
         android:layout_width="129dp"
         android:layout_height="37dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -84,7 +87,8 @@
         app:layout_constraintHorizontal_bias="0.205"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.001" />
+        app:layout_constraintVertical_bias="0.001"
+        android:entries="@array/spinner_tag"/>
 
     <Button
         android:id="@+id/button"
@@ -120,7 +124,7 @@
         app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719" />
+        app:layout_constraintVertical_bias="0.782" />
 
     <Spinner
         android:id="@+id/spinner2"
@@ -128,10 +132,10 @@
         android:layout_height="41dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777" />
+        app:layout_constraintVertical_bias="0.843" />
 
     <Button
         android:id="@+id/button3"
@@ -143,13 +147,13 @@
         app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.771" />
+        app:layout_constraintVertical_bias="0.853" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/locText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location:"
+        android:text="@string/location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.064"
@@ -157,52 +161,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.064" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="193dp"
-        android:layout_height="51dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.971" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="144dp"
-        android:layout_height="52dp"
-        android:text="Change Location"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.972" />
-
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/peopleSpinner"
         android:layout_width="193dp"
         android:layout_height="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.87" />
+        app:layout_constraintVertical_bias="0.959" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="147dp"
         android:layout_height="53dp"
+        android:onClick="remTag"
         android:text="@string/remove_selected_person"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.872" />
+        app:layout_constraintVertical_bias="0.96" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
