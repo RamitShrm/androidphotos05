@@ -22,4 +22,5 @@
         android:name="com.example.androidphotos05.ui.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
+
 </navigation>
