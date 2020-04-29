@@ -68,7 +68,7 @@
         app:layout_constraintVertical_bias="0.253" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/personText"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:background="@android:drawable/editbox_background"
