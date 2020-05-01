@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,8 +22,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Album> albums = new ArrayList<Album>();
-    Album album;
+    private Album album;
+    private ArrayList<Album> albums = new ArrayList<>();
 
 
     @Override
@@ -38,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        GridView gridView = (GridView) findViewById(R.id.grid_view);
+
+
+
 
     }
 
