@@ -43,6 +43,7 @@ public class AddFragment extends Fragment implements View.OnClickListener {
         return root;
     }
 
+    
     @Override
     public void onClick(View view) {
         Intent intent = new Intent();
