@@ -24,12 +24,10 @@ import java.util.List;
  */
 public class AlbumActivity extends AppCompatActivity {
     private List<Photo> photos;
-    private Photo photo;
     private Album checkedAlbum;
     private ArrayList<Album> album;
     private String path;
     private int albumPosition = 0;
-    private GridView albumList = findViewById(R.id.albumList);
 
 
     /**
@@ -43,12 +41,7 @@ public class AlbumActivity extends AppCompatActivity {
         setContentView(R.layout.activity_album);
         path = this.getApplicationInfo().dataDir + "/data.dat";
         Intent intent = getIntent();
-        photos = (List<Photo>) intent.getSerializableExtra("albums");
-        int x = 0;
-        while(photos.get(x) != null)
-        {
-
-        }
+        album = (ArrayList<Album>) intent.getSerializableExtra("albums");
         albumPosition = intent.getIntExtra("albumPosition", 0);
         checkedAlbum = album.get(albumPosition);
 
@@ -62,15 +55,7 @@ public class AlbumActivity extends AppCompatActivity {
      * @param view as view
      */
     public void openPhoto(View view) {
-        if (albumList.getAdapter().getCount() == 0)
-            return;
 
-        Intent intent = new Intent(this, PhotoActivity.class);
-
-        intent.putExtra("albums", album);
-        intent.putExtra("albumPosition", albumPosition);
-        intent.putExtra("photoPosition", albumList.getCheckedItemPosition());
-        startActivity(intent);
 
     }
 
@@ -95,8 +80,6 @@ public class AlbumActivity extends AppCompatActivity {
      * @param view as view
      */
     public void removePhoto(View view) {
-        Photo curr = (Photo) albumList.getSelectedItem();
-        album.remove(curr);
 
 
     }

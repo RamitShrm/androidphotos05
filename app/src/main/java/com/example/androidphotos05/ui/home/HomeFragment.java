@@ -1,6 +1,5 @@
 package com.example.androidphotos05.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.androidphotos05.R;
 
-public class HomeFragment extends Fragment  implements View.OnClickListener  {
+public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
@@ -32,13 +31,5 @@ public class HomeFragment extends Fragment  implements View.OnClickListener  {
             }
         });
         return root;
-    }
-
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent();
-        intent.setType("/album");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-
     }
 }

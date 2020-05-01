@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.androidphotos05.Photo;
-import com.example.androidphotos05.PhotoActivity;
+//import com.example.androidphotos05.PhotoActivity;
 import com.example.androidphotos05.R;
 
 public class AddFragment extends Fragment implements View.OnClickListener {
@@ -34,16 +34,16 @@ public class AddFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 if(picturePath != null) {
-                    Intent intent = new Intent(getActivity(), PhotoActivity.class);
-                    intent.putExtra("Photo",new Photo(picturePath));
-                    startActivity(intent);
+                   // Intent intent = new Intent(getActivity(), PhotoActivity.class);
+                    //intent.putExtra("Photo",new Photo(picturePath));
+                    //startActivity(intent);
                 }
             }
         });
         return root;
     }
 
-    
+
     @Override
     public void onClick(View view) {
         Intent intent = new Intent();

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Album> albums = new ArrayList<Album>();
     Album album;
-    private TextView selAlbum = findViewById(R.id.selAlbum);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +47,10 @@ public class MainActivity extends AppCompatActivity {
      * @param view current view
      */
     public void removeAlbum(View view) {
-
     }
 
     /**
-     * Adds the new album to the list view
+     * Adds the new ablum to the list view. Updates the view and Saves the data.
      *
      * @param view current view
      */
