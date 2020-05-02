@@ -44,15 +44,6 @@ public class MainActivity extends AppCompatActivity {
         //  albumList.setAdapter(a);
     }
 
-    public void createAlbum(View v)
-    {
-        if(!album.toString().equalsIgnoreCase(albumName.toString()))
-        {
-            Album newAlbum = new Album(albumName.toString());
-            albums.add(newAlbum);
 
-
-        }
-    }
 
 }

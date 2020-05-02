@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,14 +15,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.androidphotos05.Album;
 import com.example.androidphotos05.AlbumActivity;
 import com.example.androidphotos05.Photo;
 import com.example.androidphotos05.PhotoActivity;
+import com.example.androidphotos05.PhotoAdapter;
 import com.example.androidphotos05.R;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment  {
 
     private HomeViewModel homeViewModel;
+    PhotoAdapter a;
+    ListView albumList;
+    EditText albumName;
+    ArrayList<Album> albums = new ArrayList<Album>();
+    Album album;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,5 +57,20 @@ public class HomeFragment extends Fragment  {
             }
         });
         return root;
+    }
+
+    public void createAlbum(View v)
+    {
+        String name = albumName.getText().toString();
+        Album newAlbum = new Album(name);
+        for(Album x: albums)
+        {
+            if(!x.getAlbumName().equalsIgnoreCase(newAlbum.getAlbumName()))
+            {
+                albums.add(newAlbum);
+                albums.clear();
+                albumList.setAdapter(a);
+            }
+        }
     }
 }
