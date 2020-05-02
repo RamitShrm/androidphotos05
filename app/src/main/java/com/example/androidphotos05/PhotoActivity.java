@@ -63,9 +63,11 @@ public class PhotoActivity extends AppCompatActivity {
     }
 
     public void remTag(View v){
-        photo.delPerson(peopleSpinner.getSelectedItem().toString());
-        peopleList.clear();
-        peopleList.addAll(photo.getPeople());
-        spinnerArrayAdapter.notifyDataSetChanged();
+        if(peopleSpinner.getSelectedItem() != null) {
+            photo.delPerson(peopleSpinner.getSelectedItem().toString());
+            peopleList.clear();
+            peopleList.addAll(photo.getPeople());
+            spinnerArrayAdapter.notifyDataSetChanged();
+        }
     }
 }

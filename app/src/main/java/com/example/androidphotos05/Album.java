@@ -5,6 +5,14 @@ package com.example.androidphotos05;
  * @author Ramit Sharma
  */
 
+import android.content.Context;
+
+import com.example.androidphotos05.Photo;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,10 +20,8 @@ import java.util.List;
 
 public class Album implements Serializable {
     static final long serialVersionUID = 1L;
-    public String albumName;
-    public int numPhotos;
-    public List<Photo> photoList = new ArrayList<>();
-    private String thumbnail = "data/default.png";
+    private String albumName;
+    private List<Photo> photoList = new ArrayList<>();
 
     public Album(String albumName) {
         this.albumName = albumName;
@@ -60,39 +66,19 @@ public class Album implements Serializable {
     }
 
     /**
-     * Grabs thumbnail
-     * @return thumbnail
-     */
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    /**
-     * Getns number of photos
-     * @return the number
-     */
-    public int getNumPhotos(){
-        return numPhotos;
-    }
-
-    /**
      * Adds new photo to the total count, and creates a new photo adds it to the list
      * @param photoPath path of new photo
      */
     public void addPhoto(String photoPath) {
-        numPhotos++;
         photoList.add(new Photo(photoPath));
-        thumbnail = photoList.get(0).getImagePath();
     }
 
     /**
-     * adds new object photo to list and increases photo count
+     * adds new object photo to list and increaes photo count
      * @param photo the photo object being added
      */
     public void addPhoto(Photo photo) {
-        numPhotos++;
         photoList.add(photo);
-        thumbnail = photoList.get(0).getImagePath();
     }
 
     /**
@@ -100,10 +86,24 @@ public class Album implements Serializable {
      * @param photo the photo being removed
      */
     public void delPhoto(Photo photo){
-        numPhotos--;
         photoList.remove(photo);
-        if(photoList.isEmpty()) thumbnail = "data/default.png";
-        if(!photoList.isEmpty()) thumbnail = photoList.get(0).getImagePath();
     }
 
+    public void writeAlbum(Context context) throws IOException {
+        FileOutputStream fout = context.openFileOutput(this.getAlbumName(), Context.MODE_PRIVATE);//new FileOutputStream(storePath + File.separator + this.getAlbumName() + ".dat");
+        ObjectOutputStream oos = new ObjectOutputStream(fout);
+        oos.writeObject(this);
+        fout.close();
+        oos.close();
+    }
+
+    /*public Album readAlbum(String username) throws IOException, ClassNotFoundException{
+        File userFile = new File("data/users/" + username + ".dat");
+        if(!userFile.exists()) return null;
+        FileInputStream fin = new FileInputStream(storePath + File.separator + username + ".dat");
+        ObjectInputStream ois = new ObjectInputStream(fin);
+        User ret = (User)ois.readObject();
+        fin.close();
+        return ret;
+    }*/
 }
