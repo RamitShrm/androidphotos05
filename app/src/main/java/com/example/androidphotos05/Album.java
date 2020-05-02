@@ -88,22 +88,4 @@ public class Album implements Serializable {
     public void delPhoto(Photo photo){
         photoList.remove(photo);
     }
-
-    public void writeAlbum(Context context) throws IOException {
-        FileOutputStream fout = context.openFileOutput(this.getAlbumName(), Context.MODE_PRIVATE);//new FileOutputStream(storePath + File.separator + this.getAlbumName() + ".dat");
-        ObjectOutputStream oos = new ObjectOutputStream(fout);
-        oos.writeObject(this);
-        fout.close();
-        oos.close();
-    }
-
-    /*public Album readAlbum(String username) throws IOException, ClassNotFoundException{
-        File userFile = new File("data/users/" + username + ".dat");
-        if(!userFile.exists()) return null;
-        FileInputStream fin = new FileInputStream(storePath + File.separator + username + ".dat");
-        ObjectInputStream ois = new ObjectInputStream(fin);
-        User ret = (User)ois.readObject();
-        fin.close();
-        return ret;
-    }*/
 }
