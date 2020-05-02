@@ -70,7 +70,7 @@ public class Album implements Serializable {
      * @param photoPath path of new photo
      */
     public void addPhoto(String photoPath) {
-        photoList.add(new Photo(photoPath));
+        if (!photoList.contains(getPhoto(photoPath))) photoList.add(new Photo(photoPath));
     }
 
     /**

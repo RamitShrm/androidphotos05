@@ -1,6 +1,6 @@
 package com.example.androidphotos05.ui.home;
 
-import android.content.Intent;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,22 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.androidphotos05.Album;
-import com.example.androidphotos05.AlbumActivity;
 import com.example.androidphotos05.R;
 import com.example.androidphotos05.RecyclerViewAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -67,8 +64,9 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    public void saveAlbums(){
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("shared preferences",MODE_PRIVATE);
+    private void saveAlbums(){
+        SharedPreferences sharedPreferences = Objects.requireNonNull(
+                this.getActivity()).getSharedPreferences("shared preferences",MODE_PRIVATE);
         SharedPreferences.Editor Editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(albumObjects);
@@ -76,8 +74,9 @@ public class HomeFragment extends Fragment {
         Editor.apply();
     }
 
-    public List<Album> readAlbums(){
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("shared preferences",MODE_PRIVATE);
+    private List<Album> readAlbums(){
+        SharedPreferences sharedPreferences = Objects.requireNonNull(
+                this.getActivity()).getSharedPreferences("shared preferences",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("AlbumsList", null);
         Type type = new TypeToken<List<Album>>() {}.getType();
