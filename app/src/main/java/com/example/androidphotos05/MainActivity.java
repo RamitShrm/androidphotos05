@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-    PhotoAdapter a;
     ListView albumList;
     EditText albumName;
     ArrayList<Album> albums = new ArrayList<Album>();

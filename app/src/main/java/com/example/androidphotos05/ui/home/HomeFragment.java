@@ -4,34 +4,30 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.androidphotos05.Album;
 import com.example.androidphotos05.AlbumActivity;
-import com.example.androidphotos05.Photo;
-import com.example.androidphotos05.PhotoActivity;
-import com.example.androidphotos05.PhotoAdapter;
 import com.example.androidphotos05.R;
+import com.example.androidphotos05.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment  {
 
     private HomeViewModel homeViewModel;
-    PhotoAdapter a;
+    ArrayAdapter<String> albumAdapter;
     ListView albumList;
     EditText albumName;
-    ArrayList<Album> albums = new ArrayList<Album>();
-    Album album;
+    List<String> albums = new ArrayList<>();
+    User listOfAlbums = new User("Main");
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +40,17 @@ public class HomeFragment extends Fragment  {
                 //textView.setText(s);
             }
         });*/
+        albums.addAll(listOfAlbums.getAlbumNames());
+        albumList = root.findViewById(R.id.listView);
+        //albumAdapter = new ArrayAdapter<String>(this, R.layout.fragment_home, albums);
+        Button addAlbum = root.findViewById(R.id.button4);
+        addAlbum.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                createAlbum(view);
+            }});
+
+
         Button button = root.findViewById(R.id.open_album);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,20 +63,21 @@ public class HomeFragment extends Fragment  {
 
             }
         });
+
         return root;
     }
 
     public void createAlbum(View v)
     {
         String name = albumName.getText().toString();
-        Album newAlbum = new Album(name);
-        for(Album x: albums)
+        for(int x = 0; x < listOfAlbums.getAlbumList().size(); x++)
         {
-            if(!x.getAlbumName().equalsIgnoreCase(newAlbum.getAlbumName()))
+            if(listOfAlbums.getAlbumList().get(x).getAlbumName().equalsIgnoreCase(name))
             {
-                albums.add(newAlbum);
+                listOfAlbums.addAlbum(name);
                 albums.clear();
-                albumList.setAdapter(a);
+                albumAdapter.notifyDataSetChanged();
+                return;
             }
         }
     }

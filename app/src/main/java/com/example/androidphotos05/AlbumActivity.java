@@ -17,7 +17,7 @@ import java.util.List;
 
 public class AlbumActivity extends AppCompatActivity {
 
-    public PhotoAdapter p;
+
     Album album;
     List<Photo> photos = new ArrayList<>();
     ListView photoList;
@@ -27,6 +27,7 @@ public class AlbumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
         photoList = (ListView) findViewById(R.id.photoList);
+        album = (Album) getIntent().getSerializableExtra("Album");
         rename = findViewById(R.id.editText2);
         //if(album.getPhotoList() != null)
         //{
@@ -39,7 +40,7 @@ public class AlbumActivity extends AppCompatActivity {
     public void addPhoto(View v)
     {
         Intent intent = new Intent(this, AddFragment.class);
-        intent.putExtra("album", album);
+        intent.putExtra("album/*", album);
         startActivity(intent);
 
     }
