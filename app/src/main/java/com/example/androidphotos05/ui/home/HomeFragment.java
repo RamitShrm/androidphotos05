@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (!albumText.getText().toString().isEmpty()
-                        || albumList.contains(albumText.getText().toString())) {
+                        && !albumList.contains(albumText.getText().toString())) {
                     Album newAlbum = new Album(albumText.getText().toString());
                     albumObjects.add(newAlbum);
                     albumList.add(newAlbum.getAlbumName());
