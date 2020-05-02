@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.androidphotos05.Album;
 import com.example.androidphotos05.AlbumActivity;
 import com.example.androidphotos05.R;
-import com.example.androidphotos05.RecylerViewAdapter;
+import com.example.androidphotos05.RecyclerViewAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
 
     private List<String> albumList = new ArrayList<>();
     private List<Album> albumObjects = new ArrayList<>();
-    private RecylerViewAdapter adapter;
+    private RecyclerViewAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,21 +43,11 @@ public class HomeFragment extends Fragment {
             albumList.add(album.getAlbumName());
         }
 
-        Button button = root.findViewById(R.id.open_album);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(), AlbumActivity.class);
-                    //intent.putExtra("Album",Album Clicked);
-                    startActivity(intent);
-            }
-        });
-
         final Button addButton = root.findViewById(R.id.add_button);
         final EditText albumText = root.findViewById(R.id.album_text);
         RecyclerView recyclerView = root.findViewById(R.id.album_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        adapter = new RecylerViewAdapter(root.getContext(), albumList);
+        adapter = new RecyclerViewAdapter(root.getContext(), albumList);
         recyclerView.setAdapter(adapter);
 
         addButton.setOnClickListener(new View.OnClickListener() {
