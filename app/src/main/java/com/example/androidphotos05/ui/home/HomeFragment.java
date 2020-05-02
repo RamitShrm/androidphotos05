@@ -53,7 +53,8 @@ public class HomeFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!albumText.getText().toString().isEmpty()) {
+                if (!albumText.getText().toString().isEmpty()
+                        || albumList.contains(albumText.getText().toString())) {
                     Album newAlbum = new Album(albumText.getText().toString());
                     albumObjects.add(newAlbum);
                     albumList.add(newAlbum.getAlbumName());

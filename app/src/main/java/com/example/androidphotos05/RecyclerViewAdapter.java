@@ -59,7 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 public void onClick(View view) {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, AlbumActivity.class);
-                    //intent.putExtra("Album",Album Clicked);
+                    //intent.putExtra("Album", myTextView.getText().toString());
                     context.startActivity(intent);
                 }
             });
