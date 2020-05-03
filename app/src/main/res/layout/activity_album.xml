@@ -46,9 +46,10 @@
         app:layout_constraintVertical_bias="0.027" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/add_photo"
         android:layout_width="130dp"
         android:layout_height="50dp"
+        android:onClick="addPhoto"
         android:text="@string/add_photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +83,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8"
+        app:layout_constraintTop_toBottomOf="@+id/add_photo"
         app:layout_constraintVertical_bias="0.545" />
 </androidx.constraintlayout.widget.ConstraintLayout>

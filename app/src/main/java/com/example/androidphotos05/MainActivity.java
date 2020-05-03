@@ -1,20 +1,21 @@
 package com.example.androidphotos05;
 
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
+import android.app.FragmentTransaction;
+import android.os.Bundle;
+
+import com.example.androidphotos05.ui.add.AddFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,5 +32,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+        if (getIntent().getExtras() != null){
+            if (getIntent().getExtras().getInt("fragment") == 1) {
+                navView.setSelectedItemId(R.id.navigation_add);
+            }
+        }
+
     }
 }

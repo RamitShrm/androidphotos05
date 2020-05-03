@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.example.androidphotos05.ui.add.AddFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -56,6 +57,12 @@ public class AlbumActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void addPhoto(View v){
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("fragment", 1);
+        startActivity(i);
     }
 
     private List<Album> readAlbums(){
