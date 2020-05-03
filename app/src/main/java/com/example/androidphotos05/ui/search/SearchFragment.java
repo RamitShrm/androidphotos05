@@ -9,30 +9,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import com.example.androidphotos05.Album;
 import com.example.androidphotos05.Photo;
 import com.example.androidphotos05.R;
 import com.example.androidphotos05.SearchResultsActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import static android.content.Context.MODE_PRIVATE;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SearchFragment extends Fragment  {
 
-    //private SearchViewModel searchViewModel;
     private EditText personText;
     private EditText locationText;
     private List<Photo> resultsList = new ArrayList<>();
@@ -40,15 +35,7 @@ public class SearchFragment extends Fragment  {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        //searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         View root = inflater.inflate(R.layout.fragment_search, container, false);
-        //final TextView textView = root.findViewById(R.id.text_search);
-        /*searchViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                //textView.setText(s);
-            }
-        });*/
 
         albumList = readAlbums();
 
@@ -68,10 +55,20 @@ public class SearchFragment extends Fragment  {
                     return;
                 }
 
-                for(int x = 0; x < albumList.size(); x++)
+                for (Album album: albumList ) {
+                    for (Photo photo: album.getPhotoList()) {
+                        if(photo.getLocation().equals(locationText.getText().toString())){
+                            resultsList.add(photo);
+                        }
+                        if (photo.getPeople().contains(personText.getText().toString())){
+                            resultsList.add(photo);
+                        }
+                    }
+                }
+               /* for(int x = 0; x < albumList.size(); x++)
                 {
                     Album album = albumList.get(x);
-                    for(int y = 0; y < album.getPhotoList().size(); x++)
+                    for(int y = 0; y < album.getPhotoList().size(); y++)
                     {
                         Photo photo = album.getPhotoList().get(y);
                         String location = photo.getLocation();
@@ -87,7 +84,7 @@ public class SearchFragment extends Fragment  {
                             }
                         }
                     }
-                }
+                }*/
                 Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
                 intent.putExtra("Search Results", (Serializable) resultsList);
                 startActivity(intent);
@@ -106,7 +103,8 @@ public class SearchFragment extends Fragment  {
     }
 
     private List<Album> readAlbums(){
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("shared preferences",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = Objects.requireNonNull(
+                getActivity()).getSharedPreferences("shared preferences",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("AlbumsList", null);
         Type type = new TypeToken<List<Album>>() {}.getType();

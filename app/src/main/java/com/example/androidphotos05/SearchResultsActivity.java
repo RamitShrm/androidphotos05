@@ -1,11 +1,9 @@
 package com.example.androidphotos05;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.GridView;
-
 import java.util.List;
 
 public class SearchResultsActivity extends AppCompatActivity {

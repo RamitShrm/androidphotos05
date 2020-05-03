@@ -1,14 +1,13 @@
 package com.example.androidphotos05;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Thomas Hanna
  * @author Ramit Sharma
  */
-
-import java.io.Serializable;
-import java.util.ArrayList;
-
-import java.util.List;
 
 public class Album implements Serializable {
     static final long serialVersionUID = 1L;
@@ -23,7 +22,7 @@ public class Album implements Serializable {
      * Sets album name to parameter
      * @param name album name gets set to this parameter
      */
-    public void setAlbumName(String name){
+    void setAlbumName(String name){
         this.albumName = name;
     }
 
@@ -49,7 +48,7 @@ public class Album implements Serializable {
         return null;
     }
 
-    public Photo getPhoto(Photo photo){
+    Photo getPhoto(Photo photo){
         for (Photo name: photoList) {
             if (name.getImagePath().equals(photo.getImagePath())){
                 return name;
@@ -100,11 +99,11 @@ public class Album implements Serializable {
      * Deletes photo object, lowers total count and removes from list
      * @param photo the photo being removed
      */
-    public void delPhoto(Photo photo){
+    void delPhoto(Photo photo){
         photoList.remove(photo);
     }
 
-    public List<String> getImageNames(){
+    List<String> getImageNames(){
         List<String> imageNames = new ArrayList<>();
         for (Photo name: photoList) {
             imageNames.add(name.getImagePath());

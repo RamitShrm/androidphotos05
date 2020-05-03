@@ -4,18 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageView;
-
-import com.example.androidphotos05.ui.add.AddFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,13 +99,17 @@ public class AlbumActivity extends AppCompatActivity {
     {
         renameText = findViewById(R.id.editText2);
         String newName = renameText.getText().toString();
-            if (!albumObjects.contains(newName) && (!newName.isEmpty()))
-            {
-                curAlbum.setAlbumName(newName);
-                saveAlbums();
-                renameText.getText().clear();
+        for (Album album : albumObjects){
+            if (album.getAlbumName().equals(newName)){
                 return;
             }
+        }
+        if (!newName.isEmpty())
+        {
+            curAlbum.setAlbumName(newName);
+            saveAlbums();
+            renameText.getText().clear();
+        }
     }
 
     public void deleteAlbum(View v)
