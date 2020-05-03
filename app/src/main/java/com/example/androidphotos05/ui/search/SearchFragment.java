@@ -24,6 +24,8 @@ import com.example.androidphotos05.SearchResultsActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import static android.content.Context.MODE_PRIVATE;
+
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +89,7 @@ public class SearchFragment extends Fragment  {
                     }
                 }
                 Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
-                intent.putExtra("Search Results", (Parcelable) resultsList);
+                intent.putExtra("Search Results", (Serializable) resultsList);
                 startActivity(intent);
             }
         });
