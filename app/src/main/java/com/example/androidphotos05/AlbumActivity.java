@@ -24,6 +24,7 @@ public class AlbumActivity extends AppCompatActivity {
 
     private List<Album> albumObjects;
     Album curAlbum;
+    int indexAlbum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +38,11 @@ public class AlbumActivity extends AppCompatActivity {
         for (Album album : albumObjects){
             if (album.getAlbumName().equals(selAlbum)){
                 curAlbum = album;
+                indexAlbum = albumObjects.indexOf(album);
             }
         }
 
-        ImageAdapter adapter = new ImageAdapter(this, curAlbum.getImageNames(), curAlbum.getPhotoList());
+        ImageAdapter adapter = new ImageAdapter(this, albumObjects.get(indexAlbum).getImageNames(), albumObjects.get(indexAlbum).getPhotoList());
         GridView grid = findViewById(R.id.grid_view);
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -49,8 +51,8 @@ public class AlbumActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Intent intent = new Intent(AlbumActivity.this, PhotoActivity.class);
-                Photo photo = curAlbum.getPhotoList().get(position);
-                intent.putExtra("Album", curAlbum);
+                Photo photo = albumObjects.get(indexAlbum).getPhotoList().get(position);
+                intent.putExtra("Album", albumObjects.get(indexAlbum));
                 intent.putExtra("Photo", photo);
                 saveAlbums();
                 startActivity(intent);
@@ -87,4 +89,6 @@ public class AlbumActivity extends AppCompatActivity {
         Editor.putString("AlbumsList", json);
         Editor.apply();
     }
+
+
 }
