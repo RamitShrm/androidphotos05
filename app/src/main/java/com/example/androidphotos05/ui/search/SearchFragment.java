@@ -54,10 +54,20 @@ public class SearchFragment extends Fragment  {
                     return;
                 }
 
-                for(int x = 0; x < albumList.size(); x++)
+                for (Album album: albumList ) {
+                    for (Photo photo: album.getPhotoList()) {
+                        if(photo.getLocation().equals(locationText.getText().toString())){
+                            resultsList.add(photo);
+                        }
+                        if (photo.getPeople().contains(personText.getText().toString())){
+                            resultsList.add(photo);
+                        }
+                    }
+                }
+               /* for(int x = 0; x < albumList.size(); x++)
                 {
                     Album album = albumList.get(x);
-                    for(int y = 0; y < album.getPhotoList().size(); x++)
+                    for(int y = 0; y < album.getPhotoList().size(); y++)
                     {
                         Photo photo = album.getPhotoList().get(y);
                         String location = photo.getLocation();
@@ -73,7 +83,7 @@ public class SearchFragment extends Fragment  {
                             }
                         }
                     }
-                }
+                }*/
                 Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
                 intent.putExtra("Search Results", (Serializable) resultsList);
                 startActivity(intent);
