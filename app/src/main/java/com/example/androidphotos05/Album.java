@@ -88,4 +88,12 @@ public class Album implements Serializable {
     public void delPhoto(Photo photo){
         photoList.remove(photo);
     }
+
+    public List<String> getImageNames(){
+        List<String> imageNames = new ArrayList<>();
+        for (Photo name: photoList) {
+            imageNames.add(name.getImagePath());
+        }
+        return imageNames;
+    }
 }

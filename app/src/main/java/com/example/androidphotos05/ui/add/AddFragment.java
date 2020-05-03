@@ -64,8 +64,8 @@ public class AddFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 if(picturePath != null && albumSpinner.getSelectedItem() != null) {
-                    getAlbumWithName(albumSpinner.getSelectedItem().toString());
-                    selAlbum.addPhoto(picturePath);
+                    selAlbum = getAlbumWithName(albumSpinner.getSelectedItem().toString());
+                    //selAlbum.addPhoto(picturePath);
                     Intent intent = new Intent(getActivity(), PhotoActivity.class);
                     intent.putExtra("Album", selAlbum);
                     intent.putExtra("Photo", selAlbum.getPhoto(picturePath));
@@ -80,8 +80,11 @@ public class AddFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         Intent intent = new Intent();
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(Intent.createChooser(intent,"Select Picture"), SELECT_PICTURE);
     }
 
@@ -121,12 +124,14 @@ public class AddFragment extends Fragment implements View.OnClickListener {
         Editor.apply();
     }
 
-    private void getAlbumWithName(String name){
+    private Album getAlbumWithName(String name){
         for (Album album: albumList) {
             if (album.getAlbumName().equals(name)){
-                selAlbum = album;
+                album.addPhoto(picturePath);
+                return album;
             }
         }
+        return null;
     }
 
 }
