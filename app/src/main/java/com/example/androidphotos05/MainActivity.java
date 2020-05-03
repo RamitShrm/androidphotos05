@@ -1,12 +1,10 @@
 package com.example.androidphotos05;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.ListView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -14,15 +12,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-
-    ListView albumList;
-    EditText albumName;
-    ArrayList<Album> albums = new ArrayList<Album>();
-    Album album;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +31,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-        albumName = findViewById(R.id.editText);
-        albumList = (ListView) findViewById(R.id.listView);
-        //  albumList.setAdapter(a);
     }
-
-
-
 }

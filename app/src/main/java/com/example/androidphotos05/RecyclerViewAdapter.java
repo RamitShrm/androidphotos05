@@ -1,6 +1,7 @@
 package com.example.androidphotos05;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidphotos05.ui.home.HomeFragment;
+
 import java.util.List;
 
-public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private List<String> albumNames;
     private LayoutInflater Inflater;
-    private ItemClickListener ClickListener;
 
     // data is passed into the constructor
-    public RecylerViewAdapter(Context context, List<String> albumNames) {
+    public RecyclerViewAdapter(Context context, List<String> albumNames) {
         this.Inflater = LayoutInflater.from(context);
         this.albumNames = albumNames;
     }
@@ -46,18 +48,21 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
 
 
     // stores and recycles views as they are scrolled off screen
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder  {
         TextView myTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.albumName);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            //if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context, AlbumActivity.class);
+                    intent.putExtra("Album", myTextView.getText().toString());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
@@ -66,13 +71,5 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
         return albumNames.get(id);
     }
 
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        //this.mClickListener = itemClickListener;
-    }
 
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
 }
