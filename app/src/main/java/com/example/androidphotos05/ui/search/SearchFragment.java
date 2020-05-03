@@ -56,7 +56,7 @@ public class SearchFragment extends Fragment  {
 
                 for (Album album: albumList ) {
                     for (Photo photo: album.getPhotoList()) {
-                        if(photo.getLocation().equals(locationText.getText().toString())){
+                        if(photo.getLocation().contains(locationText.getText().toString())){
                             resultsList.add(photo);
                         }
                         if (photo.getPeople().contains(personText.getText().toString())){
