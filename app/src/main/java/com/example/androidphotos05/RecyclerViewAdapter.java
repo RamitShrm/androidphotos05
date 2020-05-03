@@ -6,11 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.androidphotos05.ui.home.HomeFragment;
 
 import java.util.List;
 
@@ -28,7 +25,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // inflates the row layout from xml when needed
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = Inflater.inflate(R.layout.recyclerview_row, parent, false);
         return new ViewHolder(view);
     }
@@ -48,7 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     // stores and recycles views as they are scrolled off screen
-    public static class ViewHolder extends RecyclerView.ViewHolder  {
+    static class ViewHolder extends RecyclerView.ViewHolder  {
         TextView myTextView;
 
         ViewHolder(View itemView) {
@@ -70,6 +67,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     String getItem(int id) {
         return albumNames.get(id);
     }
-
 
 }

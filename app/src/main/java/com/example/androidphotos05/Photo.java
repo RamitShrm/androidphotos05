@@ -22,11 +22,11 @@ public class Photo implements Serializable {
      * Set location
      * @return the location
      */
-    public void setLocation(String location){
+    void setLocation(String location){
         this.location = location;
     }
 
-    public void addPerson(String name){
+    void addPerson(String name){
         if(!people.contains(name)) this.people.add(name);
     }
 
@@ -34,7 +34,7 @@ public class Photo implements Serializable {
      * Gets image path
      * @return image path from photo object
      */
-    public String getImagePath() {
+    String getImagePath() {
         return imagePath;
     }
 
@@ -43,7 +43,7 @@ public class Photo implements Serializable {
      * @param name tag type
      * @param word the actual tag string
      */
-    public void delPerson(String name)
+    void delPerson(String name)
     {
         for(String person: people)
         {

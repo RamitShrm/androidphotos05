@@ -1,16 +1,12 @@
 package com.example.androidphotos05;
 
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.core.app.ActivityCompat;
 
 import com.squareup.picasso.Picasso;
 
@@ -42,6 +38,7 @@ public class ImageAdapter extends BaseAdapter
     {
         return 0;
     }
+    @SuppressLint("InflateParams")
     @Override
     public View getView(int position, View convertView, ViewGroup
             parent)
