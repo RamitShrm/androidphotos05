@@ -37,6 +37,7 @@
         android:id="@+id/album_list"
         android:layout_width="337dp"
         android:layout_height="380dp"
+        android:background="@drawable/border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"

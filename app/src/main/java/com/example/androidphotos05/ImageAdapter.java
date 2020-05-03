@@ -20,13 +20,11 @@ public class ImageAdapter extends BaseAdapter
 {
     private Context mContext;
     private List<Photo> photoList;
-    private final List<String> imageNames;
 
-    public ImageAdapter(Context c, List<String> imageNames, List<Photo> photoList )
+    ImageAdapter(Context c, List<String> imageNames, List<Photo> photoList)
     {
         mContext = c;
         this.photoList = photoList;
-        this.imageNames = imageNames;
     }
 
     @Override
@@ -59,19 +57,11 @@ public class ImageAdapter extends BaseAdapter
             gridView = convertView;
         }
 
-        TextView textView = gridView.findViewById(R.id.grid_item_label);
-        textView.setText(imageNames.get(position));
-        // set image based on selected text
-
-
         ImageView imageView = gridView.findViewById(R.id.grid_item_image);
         imageView.setImageURI(null);
         Photo photo = photoList.get(position);
         String imageUri = photo.getImagePath();
-
         Picasso.get().load(imageUri).into(imageView);
-
-        //imageView.setImageURI(Uri.parse(photo.getImagePath()));
 
         return gridView;
     }

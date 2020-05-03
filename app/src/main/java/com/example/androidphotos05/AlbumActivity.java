@@ -2,6 +2,7 @@ package com.example.androidphotos05;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,7 +30,6 @@ public class AlbumActivity extends AppCompatActivity {
         setContentView(R.layout.activity_album);
 
         albumObjects = readAlbums();
-
         String selAlbum = Objects.requireNonNull(
                 getIntent().getExtras()).getString("Album");
 
@@ -47,6 +47,12 @@ public class AlbumActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                Intent intent = new Intent(AlbumActivity.this, PhotoActivity.class);
+                Photo photo = curAlbum.getPhotoList().get(position);
+                intent.putExtra("Album", curAlbum);
+                intent.putExtra("Photo", photo);
+                saveAlbums();
+                startActivity(intent);
 
             }
         });

@@ -63,6 +63,7 @@ public class PhotoActivity extends AppCompatActivity {
         photo = (Photo) getIntent().getSerializableExtra("Photo");
         img.setImageURI(Uri.parse(photo.getImagePath()));
         locText = findViewById(R.id.locText);
+        locText.setText(String.format("%s%s", "Location: ", photo.getLocation()));
         peopleSpinner = findViewById(R.id.peopleSpinner);
         peopleList.addAll(photo.getPeople());
         tagText = findViewById(R.id.tagText);
