@@ -35,11 +35,12 @@ public class PhotoActivity extends AppCompatActivity {
     List<String> peopleList = new ArrayList<>();
     Spinner peopleSpinner;
     ArrayAdapter<String> spinnerArrayAdapter;
+    private int albumIndex;
 
     private List<String> stringAlbums = new ArrayList<>();
     private Album selAlbum;
     private List<Album> albumList;
-    private int albumIndex;
+    ImageView img;
 
     TextView locText;
 
@@ -136,6 +137,77 @@ public class PhotoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AlbumActivity.class);
         intent.putExtra("Album",albumList.get(albumIndex).getAlbumName());
         startActivity(intent);
+    }
+
+
+    public void delPhoto(View v){
+
+        selAlbum.delPhoto(photo);
+        img.setImageBitmap(null);
+        img.setImageResource(0);
+        saveAlbums();
+        Intent intent = new Intent(PhotoActivity.this, AlbumActivity.class);
+        intent.putExtra("Album", selAlbum.getAlbumName());
+        startActivity(intent);
+
+    }
+
+    public void movePhoto(View v){
+        Spinner albumFind = findViewById(R.id.albumSpinner);
+        String path = photo.getImagePath();
+        String albumTo = albumFind.getSelectedItem().toString();
+        for(int x = 0; x < stringAlbums.size(); x++ )
+        {
+            if(stringAlbums.get(x).equals(albumTo) && !selAlbum.getAlbumName().equals(albumTo))
+            {
+                albumList.get(x).addPhoto(path);
+                saveAlbums();
+                return;
+            }
+        }
+        saveAlbums();
+    }
+
+    public void moveLeft(View v){
+
+
+        for(int x = 0; x < selAlbum.getPhotoList().size(); x++)
+        {
+            if(x != 0 && selAlbum.getPhotoList().get(x).getImagePath().equals(photo.getImagePath()) )
+            {
+                photo = selAlbum.getPhotoList().get(x-1);
+                img.setImageURI(Uri.parse(photo.getImagePath()));
+                return;
+            }
+            if(x == 0 && selAlbum.getPhotoList().get(x).getImagePath().equals(photo.getImagePath()))
+            {
+                int num = selAlbum.getPhotoList().size() - 1;
+                photo = selAlbum.getPhotoList().get(num);
+                img.setImageURI(Uri.parse(photo.getImagePath()));
+                return;
+            }
+        }
+
+    }
+
+    public void moveRight(View v){
+
+        for(int x = 0; x < selAlbum.getPhotoList().size(); x++)
+        {
+            if(x != selAlbum.getPhotoList().size() - 1 && selAlbum.getPhotoList().get(x).getImagePath().equals(photo.getImagePath()) )
+            {
+                photo = selAlbum.getPhotoList().get(x+1);
+                img.setImageURI(Uri.parse(photo.getImagePath()));
+                return;
+            }
+            if(x == selAlbum.getPhotoList().size() - 1 && selAlbum.getPhotoList().get(x).getImagePath().equals(photo.getImagePath()))
+            {
+                photo = selAlbum.getPhotoList().get(0);
+                img.setImageURI(Uri.parse(photo.getImagePath()));
+                return;
+            }
+        }
+
     }
 
 }

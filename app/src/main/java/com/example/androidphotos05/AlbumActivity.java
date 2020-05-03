@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -24,6 +25,7 @@ public class AlbumActivity extends AppCompatActivity {
 
     private List<Album> albumObjects;
     Album curAlbum;
+    EditText renameText;
     int indexAlbum;
 
     @Override
@@ -96,5 +98,28 @@ public class AlbumActivity extends AppCompatActivity {
         i.putExtra("fragment", 2);
         startActivity(i);
     }
+
+
+    public void renameAlbum(View v)
+    {
+        renameText = findViewById(R.id.editText2);
+        String newName = renameText.getText().toString();
+            if (!albumObjects.contains(newName) && (!newName.isEmpty()))
+            {
+                curAlbum.setAlbumName(newName);
+                saveAlbums();
+                renameText.getText().clear();
+                return;
+            }
+    }
+
+    public void deleteAlbum(View v)
+    {
+        albumObjects.remove(curAlbum);
+        Intent intent = new Intent(AlbumActivity.this, MainActivity.class);
+        saveAlbums();
+        startActivity(intent);
+    }
+
 
 }

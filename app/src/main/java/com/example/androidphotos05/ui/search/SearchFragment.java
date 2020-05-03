@@ -1,6 +1,7 @@
 package com.example.androidphotos05.ui.search;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +16,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.androidphotos05.Album;
 import com.example.androidphotos05.Photo;
 import com.example.androidphotos05.R;
 import com.example.androidphotos05.SearchResultsActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import static android.content.Context.MODE_PRIVATE;
 
+import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +35,7 @@ public class SearchFragment extends Fragment  {
     private EditText personText;
     private EditText locationText;
     private List<Photo> resultsList = new ArrayList<>();
+    private List<Album> albumList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +49,8 @@ public class SearchFragment extends Fragment  {
             }
         });*/
 
+        albumList = readAlbums();
+
         personText = root.findViewById(R.id.personText);
         locationText = root.findViewById(R.id.locText);
         Button search = root.findViewById(R.id.searchBtn);
@@ -51,9 +61,34 @@ public class SearchFragment extends Fragment  {
                 if( personText.getText().toString().isEmpty() && locationText.getText().toString().isEmpty()){
                     return;
                 }
-                // Search each album, get each photo with the criteria, add them to resultsList
+
+                if(albumList.isEmpty())
+                {
+                    return;
+                }
+
+                for(int x = 0; x < albumList.size(); x++)
+                {
+                    Album album = albumList.get(x);
+                    for(int y = 0; y < album.getPhotoList().size(); x++)
+                    {
+                        Photo photo = album.getPhotoList().get(y);
+                        String location = photo.getLocation();
+                        if(location.indexOf(personText.toString()) != -1)
+                        {
+                            resultsList.add(photo);
+                        }
+                        for(int z = 0; z < photo.getPeople().size(); z++)
+                        {
+                            if(photo.getPeople().get(z).equals(personText.toString()))
+                            {
+                                resultsList.add(photo);
+                            }
+                        }
+                    }
+                }
                 Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
-                //intent.putExtra("Search Results", resultsList);
+                intent.putExtra("Search Results", (Serializable) resultsList);
                 startActivity(intent);
             }
         });
@@ -67,6 +102,20 @@ public class SearchFragment extends Fragment  {
         });
 
         return root;
+    }
+
+    private List<Album> readAlbums(){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("shared preferences",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("AlbumsList", null);
+        Type type = new TypeToken<List<Album>>() {}.getType();
+        List<Album> albums = gson.fromJson(json, type);
+
+        if (albums == null){
+            albums = new ArrayList<>();
+        }
+
+        return albums;
     }
 
 }

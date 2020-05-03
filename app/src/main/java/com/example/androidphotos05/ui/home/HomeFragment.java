@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment {
                     albumObjects.add(newAlbum);
                     albumList.add(newAlbum.getAlbumName());
                     adapter.notifyDataSetChanged();
+                    albumText.getText().clear();
                     saveAlbums();
                 }
             }
