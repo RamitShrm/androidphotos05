@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Add Tag:"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline13"
-            app:layout_constraintHorizontal_bias="0.003"
-            app:layout_constraintStart_toStartOf="@+id/guideline12"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.001" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Add Tag:"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001" />
 
     <ImageView
-    android:id="@+id/selected_photo"
-    android:layout_width="310dp"
-    android:layout_height="310dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:adjustViewBounds="true"
-    android:scaleType="fitCenter"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/guideline13"
-    app:layout_constraintStart_toStartOf="@+id/guideline12"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.342"
-    tools:src="@tools:sample/avatars" />
+        android:id="@+id/selected_photo"
+        android:layout_width="310dp"
+        android:layout_height="310dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.342"
+        tools:src="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/add_photo"
@@ -50,11 +50,11 @@
         app:layout_constraintVertical_bias="0.001" />
 
     <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="20dp" />
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline13"
@@ -91,10 +91,11 @@
         app:layout_constraintVertical_bias="0.001" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/leftButton"
         android:layout_width="30dp"
         android:layout_height="200dp"
         android:text="&lt;"
+        android:onClick="moveLeft"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -103,10 +104,11 @@
         app:layout_constraintVertical_bias="0.345" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/rightButton"
         android:layout_width="30dp"
         android:layout_height="200dp"
         android:text="&gt;"
+        android:onClick="moveRight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.997"
@@ -142,6 +144,7 @@
         android:layout_width="144dp"
         android:layout_height="52dp"
         android:text="move"
+        android:onClick="movePhoto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.916"
@@ -204,6 +207,7 @@
         android:layout_width="74dp"
         android:layout_height="66dp"
         android:text="Delete Photo"
+        android:onClick="delPhoto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

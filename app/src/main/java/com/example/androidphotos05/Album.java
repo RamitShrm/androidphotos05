@@ -5,17 +5,9 @@ package com.example.androidphotos05;
  * @author Ramit Sharma
  */
 
-import android.content.Context;
-
-import com.example.androidphotos05.Photo;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.List;
 
 public class Album implements Serializable {
@@ -55,6 +47,29 @@ public class Album implements Serializable {
             }
         }
         return null;
+    }
+
+    public Photo getPhoto(Photo photo){
+        for (Photo name: photoList) {
+            if (name.getImagePath().equals(photo.getImagePath())){
+                return name;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean equals(Object other){
+        boolean result;
+        if((other == null) || (getClass() != other.getClass())){
+            result = false;
+        }
+        else{
+            Album album = (Album)other;
+            result = albumName.equals(album.getAlbumName()) &&  photoList == album.getPhotoList();
+        }
+
+        return result;
     }
 
     /**
