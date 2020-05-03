@@ -26,6 +26,9 @@ import java.util.Objects;
 
 public class PhotoActivity extends AppCompatActivity {
 
+    /*TODO
+        Create onBack action that returns to the album of the specific photo.
+     */
 
     Photo photo;
     EditText tagText;
@@ -35,7 +38,7 @@ public class PhotoActivity extends AppCompatActivity {
     private int albumIndex;
 
     private List<String> stringAlbums = new ArrayList<>();
-    Album selAlbum;
+    private Album selAlbum;
     private List<Album> albumList;
     ImageView img;
 
@@ -63,7 +66,7 @@ public class PhotoActivity extends AppCompatActivity {
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         albumSpinner.setAdapter(spinnerArrayAdapter);
 
-        img = findViewById(R.id.selected_photo);
+        ImageView img = findViewById(R.id.selected_photo);
 
         img.setImageURI(Uri.parse(albumList.get(albumIndex).getPhoto(photo).getImagePath()));
         locText = findViewById(R.id.locText);
