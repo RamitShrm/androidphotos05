@@ -90,5 +90,11 @@ public class AlbumActivity extends AppCompatActivity {
         Editor.apply();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("fragment", 2);
+        startActivity(i);
+    }
 
 }

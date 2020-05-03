@@ -17,9 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.androidphotos05.Album;
+import com.example.androidphotos05.MainActivity;
 import com.example.androidphotos05.Photo;
 import com.example.androidphotos05.PhotoActivity;
 import com.example.androidphotos05.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
