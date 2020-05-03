@@ -16,9 +16,7 @@ import com.example.androidphotos05.R;
 import com.example.androidphotos05.SearchResultsActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import static android.content.Context.MODE_PRIVATE;
-
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -64,26 +62,6 @@ public class SearchFragment extends Fragment  {
                         }
                     }
                 }
-               /* for(int x = 0; x < albumList.size(); x++)
-                {
-                    Album album = albumList.get(x);
-                    for(int y = 0; y < album.getPhotoList().size(); y++)
-                    {
-                        Photo photo = album.getPhotoList().get(y);
-                        String location = photo.getLocation();
-                        if(location.indexOf(personText.toString()) != -1)
-                        {
-                            resultsList.add(photo);
-                        }
-                        for(int z = 0; z < photo.getPeople().size(); z++)
-                        {
-                            if(photo.getPeople().get(z).equals(personText.toString()))
-                            {
-                                resultsList.add(photo);
-                            }
-                        }
-                    }
-                }*/
                 Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
                 intent.putExtra("Search Results", (Serializable) resultsList);
                 startActivity(intent);

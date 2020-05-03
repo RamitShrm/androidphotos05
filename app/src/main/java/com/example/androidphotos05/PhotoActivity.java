@@ -130,15 +130,11 @@ public class PhotoActivity extends AppCompatActivity {
 
 
     public void delPhoto(View v){
-
-        selAlbum.delPhoto(photo);
-        img.setImageBitmap(null);
-        img.setImageResource(0);
+        albumList.get(albumIndex).delPhoto(albumList.get(albumIndex).getPhoto(photo));
         saveAlbums();
         Intent intent = new Intent(PhotoActivity.this, AlbumActivity.class);
         intent.putExtra("Album", selAlbum.getAlbumName());
         startActivity(intent);
-
     }
 
     public void movePhoto(View v){
@@ -151,7 +147,9 @@ public class PhotoActivity extends AppCompatActivity {
             {
                 albumList.get(x).addPhoto(path);
                 saveAlbums();
-                return;
+                Intent intent = new Intent(PhotoActivity.this, AlbumActivity.class);
+                intent.putExtra("Album", albumTo);
+                startActivity(intent);
             }
         }
         saveAlbums();
