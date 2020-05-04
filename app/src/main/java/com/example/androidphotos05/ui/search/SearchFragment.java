@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.androidphotos05.Album;
@@ -29,12 +31,16 @@ public class SearchFragment extends Fragment  {
     private EditText locationText;
     private List<Photo> resultsList = new ArrayList<>();
     private List<Album> albumList;
+    private RadioButton locButton;
+    private RadioButton pplButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_search, container, false);
 
         albumList = readAlbums();
+        locButton = root.findViewById(R.id.locationRadio);
+        pplButton = root.findViewById(R.id.personRadio);
 
         personText = root.findViewById(R.id.personText);
         locationText = root.findViewById(R.id.locText);
@@ -43,25 +49,22 @@ public class SearchFragment extends Fragment  {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if( personText.getText().toString().isEmpty() && locationText.getText().toString().isEmpty()){
-                    return;
-                }
-
-                if(albumList.isEmpty())
-                {
-                    return;
-                }
+                if( personText.getText().toString().isEmpty()
+                        && locationText.getText().toString().isEmpty()) return;
+                if(albumList.isEmpty()) return;
 
                 for (Album album: albumList ) {
                     for (Photo photo: album.getPhotoList()) {
                         if(photo.getLocation().contains(locationText.getText().toString())){
-                            resultsList.add(photo);
+                            if (locButton.isChecked()) resultsList.add(photo);
                         }
                         if (photo.getPeople().contains(personText.getText().toString())){
-                            resultsList.add(photo);
+                            if (pplButton.isChecked()) resultsList.add(photo);
                         }
                     }
                 }
+                if(resultsList.isEmpty()) return;
+
                 Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
                 intent.putExtra("Search Results", (Serializable) resultsList);
                 startActivity(intent);
@@ -71,6 +74,8 @@ public class SearchFragment extends Fragment  {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                locButton.setChecked(false);
+                pplButton.setChecked(false);
                 personText.getText().clear();
                 locationText.getText().clear();
             }
