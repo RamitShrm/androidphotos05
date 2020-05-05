@@ -1,5 +1,6 @@
 package com.example.androidphotos05;
-
+//Ramit Sharma rks142
+//Thomas Hanna trh80
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

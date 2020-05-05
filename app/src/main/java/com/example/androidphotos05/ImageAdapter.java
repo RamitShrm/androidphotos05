@@ -1,5 +1,6 @@
 package com.example.androidphotos05;
-
+//Ramit Sharma rks142
+//Thomas Hanna trh80
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;

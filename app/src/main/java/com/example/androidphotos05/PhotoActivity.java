@@ -1,3 +1,5 @@
+//Ramit Sharma rks142
+//Thomas Hanna trh80
 package com.example.androidphotos05;
 
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,5 +1,6 @@
 package com.example.androidphotos05.ui.home;
-
+//Ramit Sharma rks142
+//Thomas Hanna trh80
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

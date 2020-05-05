@@ -15,7 +15,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+//Ramit Sharma rks142
+//Thomas Hanna trh80
 public class AlbumActivity extends AppCompatActivity {
 
     private List<Album> albumObjects;

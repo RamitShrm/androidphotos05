@@ -1,3 +1,6 @@
+//Ramit Sharma rks142
+//Thomas Hanna trh80
+
 package com.example.androidphotos05.ui.search;
 
 import android.content.Intent;

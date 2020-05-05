@@ -1,5 +1,6 @@
 package com.example.androidphotos05.ui.add;
-
+//Ramit Sharma rks142
+//Thomas Hanna trh80
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
